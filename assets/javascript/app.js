@@ -13,10 +13,7 @@ function makeButtons() {
         $("#btn-area").append(buttonHolder);
     }
 }
-//this should trigger when the button is pressedd... but it doesn't
-$("button").on("click",function(){
-    alert("button");
-})
+
 //gets gifs with the selected topic
 function getGifs(topic) {
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + APIkey + "&limit=10";
@@ -51,9 +48,8 @@ function addGifs(gifs) {
 }
 //this on click will animate or unanimate the gif
 //this code is stolen directly from the pausing-gifs exercsie
-$(".gif").on("click", function () {
+$(document).on("click", ".gif", function () {
     var state = $(this).attr("data-state")
-    alert('asdasd') //testing
     if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"))
         $(this).attr("data-state", 'animate')
@@ -62,10 +58,19 @@ $(".gif").on("click", function () {
         $(this).attr("src", $(this).attr("data-still"))
         $(this).attr("data-state", 'still')
     }
-
 });
-makeButtons();
-
-$("button").on("click", function () {
+//this will make the gifs for the respective 
+//topic when the button is clicked
+$(document).on("click","button", function () {
     getGifs($(this).attr("data-topic"))
 })
+//intially makes the buttons
+makeButtons();
+
+//add a button when the form is submitted
+$("#newTopic").submit(function (event) {
+    var input=$("input:first").val()
+    topics.push(input);
+    makeButtons();
+    event.preventDefault();
+});
