@@ -1,6 +1,6 @@
 
 const APIkey = 'YsIQS9tT9zOUpVFsF5Uc97GlY3GJBVz8'
-var topics = ['clouds', 'rain', 'trees', 'mountains', 'desert']
+var topics = ['clouds', 'rain', 'trees', 'mountains', 'desert','waves']
 
 // make the buttons
 function makeButtons() {
@@ -16,7 +16,7 @@ function makeButtons() {
 
 //gets gifs with the selected topic
 function getGifs(topic) {
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + APIkey + "&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + APIkey + "&limit=10";
 
     $.ajax({
         url: queryURL,
